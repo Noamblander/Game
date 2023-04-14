@@ -1,0 +1,101 @@
+
+body {
+  background-image: url(sky.avif);
+  background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  
+}
+
+#board { 
+
+  background-image: url(wood.png);
+  position: absolute;
+  bottom: 0;
+  width: 25%;
+  height: 20px;
+  border-radius: 30%;
+}
+
+#ball {
+  background-image: url(ball.jpg);
+  background-size: cover;
+background-repeat: no-repeat;
+background-position: center center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+}
+
+#right-button {
+  border-radius: 50%;
+  width: 35%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  opacity: 0.0;
+}
+
+#left-button {
+  border-radius: 50%;
+  width: 35%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  opacity: 0.0;
+}
+
+#start-button {
+  background-color: rgb(9, 43, 237);
+  border-radius: 10%;
+  width: 40%;
+  height: 30%;
+  margin-top: -40%;
+  font: 4em sans-serif;
+  color: cornsilk;
+}
+#scoreBoard{
+  font-stretch: ultra-expanded;
+ font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font: 6em sans-serif;
+  margin-top: -20%;
+  color: rgb(255, 255, 255);
+  opacity: 0.5;
+}
+#win-message
+{
+  font-size: 8em;
+    text-align: center;
+    margin-top: 50px;
+    color: rgb(0, 247, 29);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1;
+}
+#game-over{
+ 
+    font-size: 8em;
+    text-align: center;
+    margin-top: 50px;
+    color: red;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1;
+  
+}

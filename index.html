@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Board game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board game</title>
+</head>
+
+<body>
+
+    <button id="start-button" onclick="startGame()">Start</button>
+    <div id="scoreBoard"></div>
+    <div id="board"></div>
+    <div id="ball"></div>
+    <button id="right-button" onmousedown="startMovingBoardRight(event.keyCode===39)" onmouseup="stopMovingBoard()" ></button>
+    <button id="left-button" onmousedown="startMovingBoardLeft(event.keyCode===37)" onmouseup="stopMovingBoard()" ></button>
+
+    <div id="win-message">
+        You won!
+    </div>
+    <div id="game-over">
+        Game Over
+    </div>
+
+
+
+    <script>
+        let startW = 0;
+        let deltaW = 50;
+        let board = document.getElementById("board");
+        let ball = document.getElementById("ball");
+        let gameIntervalId;
+        let startWball = 0;
+        let startHball = 0;
+        let deltaWball = 5;
+        let deltaHball = 5;
+        let whatthescore = 0;
+
+        function startMovingBoardRight() {
+          
+            moveIntervalId = setInterval(function () {
+                startW += deltaW;
+                board.style.left = startW + "px";
+            }, 60);
+        }
+
+        function startMovingBoardLeft() {
+            moveIntervalId = setInterval(function () {
+                startW -= deltaW;
+                board.style.left = startW + "px";
+            }, 60);
+        }
+
+        function stopMovingBoard() {
+            clearInterval(moveIntervalId);
+        }
+
+        function startGame() {
+            document.getElementById("start-button").style.display = "none";
+            gameIntervalId = setInterval(movingBall, 20);
+        }
+
+        function movingBall() {
+            startWball += deltaWball;
+            startHball += deltaHball;
+            ball.style.top = startHball + "px";
+            ball.style.left = startWball + "px";
+
+            let boardRect = board.getBoundingClientRect();
+            let boardHeight = boardRect.bottom - boardRect.top;
+            let boardWidth = boardRect.right - boardRect.left;
+
+            if (startWball >= window.innerWidth - 40 || startWball < 0) {
+                deltaWball = -deltaWball;
+            }
+            if (startHball < 0) {
+                deltaHball = -deltaHball;
+            }
+
+            if (startHball >= boardRect.top - boardHeight && startWball >= boardRect.left && startWball <= boardRect.left + boardWidth) {
+                deltaHball = -deltaHball;
+                score();
+            }
+
+            if (startHball > window.innerHeight || startWball > window.innerWidth) {
+                clearInterval(gameIntervalId);
+                document.getElementById("game-over").style.display = "block";
+            }
+        }
+
+        function score() {
+            whatthescore += 1;
+            document.getElementById("scoreBoard").innerText = whatthescore;
+            if (whatthescore === 10) {
+                document.getElementById("win-message").style.display = "block";
+                clearInterval(gameIntervalId);
+            }
+        }
+    </script>
+</body>
+
+</html>
